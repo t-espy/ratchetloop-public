@@ -1,0 +1,26 @@
+# Sample code task. Point `repo` at a git checkout you own, then:
+#   ratchetloop run examples/task.yaml --check --policy WORKFLOW.md
+
+task_key: add-greet
+repo: /path/to/git/repo
+base_branch: main
+tier: light
+max_review_rounds: 1
+cost_budget_usd: 5
+wall_budget_s: 1800
+
+checks:
+  - "python -m pytest -q"
+
+allowed_paths:
+  - src/
+  - tests/
+
+objective: >-
+  Add a greet(name: str) -> str function that returns "hello, <name>" and a
+  unit test for it. Python 3.12. Do not change unrelated files.
+
+acceptance_criteria:
+  - "greet('ada') returns 'hello, ada'."
+  - "A unit test covers that return value."
+  - "The existing suite still passes."

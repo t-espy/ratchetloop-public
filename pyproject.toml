@@ -1,0 +1,28 @@
+[project]
+name = "ratchetloop"
+version = "0.1.0"
+description = "Standalone AI software pipeline: a task or an idea in; a branch, a verdict and a run record out"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["PyYAML>=6.0,<7"]
+
+[project.optional-dependencies]
+# Pinned so the suite runs the same pytest everywhere.
+dev = ["pytest==9.1.1"]
+
+[project.scripts]
+ratchetloop = "ratchetloop.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Role prompts ship with the code, so a pinned runtime briefs workers with the prompts it was built with.
+[tool.setuptools.package-data]
+ratchetloop = ["prompts/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

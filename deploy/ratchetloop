@@ -1,0 +1,13 @@
+#!/bin/sh
+# The pinned runtime (the pin/promote design): ratchetloop from <opt>/current, never from a
+# checkout, and never with the working directory on sys.path — the worktree it runs in could shadow
+# its own modules. Callers launch this, not a checkout's venv.
+opt=${RATCHETLOOP_OPT:-$HOME/opt/ratchetloop}
+if [ ! -x "$opt/current/.venv/bin/ratchetloop" ]; then
+  echo "ratchetloop: no pinned runtime at $opt/current (deploy/pin.sh, then deploy/promote.sh)" >&2
+  exit 2
+fi
+# A checkout on the caller's PYTHONPATH would win over the pin as surely as the working directory
+# (Phase 7 review, finding 2).
+unset PYTHONPATH PYTHONHOME
+PYTHONSAFEPATH=1 exec "$opt/current/.venv/bin/ratchetloop" "$@"
