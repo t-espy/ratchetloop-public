@@ -72,8 +72,7 @@ examples/          sample task and idea
 docs/              design and contract
 ```
 
-This tree is a curated public snapshot of a local pipeline. It is not an upstream
-for other work, and it carries no compatibility or update commitment.
+This tree is a curated public snapshot of a local pipeline. It does not claim to be the best possible implementation of anything. It fits my workflow, and has proven itself valuable. Fork it, flame it, extend it as you like.
 
 ## License
 
