@@ -19,7 +19,7 @@ Validated providers: **Grok**, **Codex**, and **Claude**.
 
 Ratchetloop has been used to produce and independently review the implementations in
 [leetcode-python](https://github.com/t-espy/leetcode-python), a public algorithm
-interview work sample with deterministic oracle testing and CI.
+interview work sample with deterministic oracle testing and CI, along with multiple ongoing private projects.
 
 ## Quick start
 
