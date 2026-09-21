@@ -1,6 +1,6 @@
 # ratchetloop — Contract
 
-**Status:** Draft 1, 2026-09-11
+**Status:** Current public contract (snapshot 2026-09-21)
 **Scope:** the normative interface — what a caller writes, what the pipeline writes, and what each
 worker must return. Anything not here is internal and may change.
 
@@ -94,6 +94,8 @@ YAML, one task per file. Unknown keys are refused.
 | `env` | no | Variables for `setup` and `checks`, `NAME: value`. Otherwise they see only `HOME`, `USER`, `LOGNAME`, `LANG`, `LC_*`, `TERM`, `TMPDIR`, `SHELL`, `TZ`, and a `PATH` without ratchetloop's own virtualenv. Workers and checks also run with no Python bytecode (`PYTHONDONTWRITEBYTECODE=1`) and no shared .NET build servers (`DOTNET_CLI_USE_MSBUILD_SERVER=0`, `MSBUILDDISABLENODEREUSE=1`, `UseSharedCompilation=false`; codex launches pin `shell_environment_policy.inherit=all` so its commands keep them); `env` may override them for `setup` and `checks`, never for workers |
 | `wall_budget_s` | no | Default 7200 |
 | `cost_budget_usd` | no | Default 25. Measured spend only: a launch whose provider reports no cost (codex) is bounded by `wall_budget_s` alone (D30) |
+
+Copilot integration is implemented but not included among the validated providers in this public snapshot.
 
 Admit refuses: a `code` task with an empty `checks` list; a `doc` task without `allowed_paths`; a
 check that only greps source (D22); a `repo` that is not a git
@@ -308,10 +310,10 @@ Markdown with YAML front matter. Unknown keys are refused.
 ```markdown
 ---
 idea_key: calc-cli                          # as task_key, but may not contain "--"
-repo: ~/projects/calc-cli                   # must be a git repo with at least one commit
+repo: /path/to/calc-cli                     # must be a git repo with at least one commit
 base_branch: master
 checks: ["venv/bin/python -m pytest -q"]    # optional; run after every code phase
-setup: ["ln -s ~/venvs/calc venv"]          # optional; as in task files
+setup: ["ln -s /path/to/venv venv"]         # optional; as in task files
 max_phases: 6                               # default 6
 cost_budget_usd: 50                         # whole idea; measured spend only (D30)
 wall_budget_s: 21600                        # whole idea

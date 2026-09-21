@@ -15,6 +15,12 @@ Validated providers: **Grok**, **Codex**, and **Claude**.
 
 [![CI](https://github.com/t-espy/ratchetloop-public/actions/workflows/ci.yml/badge.svg)](https://github.com/t-espy/ratchetloop-public/actions/workflows/ci.yml)
 
+## Used in practice
+
+Ratchetloop has been used to produce and independently review the implementations in
+[leetcode-python](https://github.com/t-espy/leetcode-python), a public algorithm
+interview work sample with deterministic oracle testing and CI.
+
 ## Quick start
 
 ```bash
